@@ -1,14 +1,14 @@
 // Const, main vars, bot.login
 const Discord = require ('discord.js');
 const config = require('./config.json');
-var bot = new Discord.Client();
+let bot = new Discord.Client();
 
 
 bot.login(config.TOKEN);
 
 // Other variables
 
-var fact = [
+let fact = [
   "The state of South Carolina gave Marilyn Manson US$40,000 not to play there, and schools in Florida threatened to expel students who attended his shows.",
   "he last civil war casualty was Joshua Chamberlain, who died in 1914 from wounds he received at the Siege of Petersberg in 1864.",
   "The real Rich Dad in the best-selling finance book Rich Dad, Poor Dad was a Hawaiian hotelier named Richard Wassman Kimi.",
@@ -35,7 +35,7 @@ var fact = [
   "Communist leader Vladimir Lenin spoke English with a strong Irish accent because his tutor was an Irishman."
 ]
 
-var ball = [
+let ball = [
   "Yes",
   "No",
   "Quack, what did you say?"
@@ -54,14 +54,14 @@ bot.on("message", function(message) {
 
   if (!message.content.startsWith(config.PREFIX)) return;
 
-  var args = message.content.substring(config.PREFIX.length).split(" ");
-  var sender = message.author;
+  let args = message.content.substring(config.PREFIX.length).split(" ");
+  let sender = message.author;
 
 
   switch (args[0].toLowerCase()) {
     // Bot utility
     case "about":
-      var about = new Discord.RichEmbed()
+      let about = new Discord.RichEmbed()
         .setTitle("Quacker Jack")
         .setDescription("Quack! I'm private discord bot for Skript community! Let's try out my fun commands. If you have any questions please ask developer.")
         .addField("Version", config.VERSION, true)
@@ -73,7 +73,7 @@ bot.on("message", function(message) {
       break;
     case "server":
       const rolesList = message.guild.roles.map(e=>e.toString()).join(" - ");
-      var server = new Discord.RichEmbed()
+      let server = new Discord.RichEmbed()
         .setTitle("📑 About this server")
         .addField("Name: ", message.guild.name, true)
         .addField("Owner: ", message.guild.owner.user.tag, true)
@@ -88,8 +88,8 @@ bot.on("message", function(message) {
       message.channel.sendEmbed(server);
       break;
     case "bot":
-      var uptime = Math.floor(bot.uptime / 864000000) + 'd : ' + (Math.floor(bot.uptime / 3600000) % 24) + 'h : ' + (Math.floor(bot.uptime / 60000) % 60) + 'm : ' + (Math.floor(bot.uptime / 1000) % 60) + 's';
-      var binfo = new Discord.RichEmbed()
+      let uptime = Math.floor(bot.uptime / 864000000) + 'd : ' + (Math.floor(bot.uptime / 3600000) % 24) + 'h : ' + (Math.floor(bot.uptime / 60000) % 60) + 'm : ' + (Math.floor(bot.uptime / 1000) % 60) + 's';
+      let binfo = new Discord.RichEmbed()
         .setAuthor("Bot information", bot.user.avatarURL)
         .setTitle("\u200B")
         .addField("Total users", bot.users.size, true)
@@ -107,7 +107,7 @@ bot.on("message", function(message) {
       // Skript
     case "guide":
         if (!args[1]) {
-          var guide = new Discord.RichEmbed()
+          let guide = new Discord.RichEmbed()
             .setTitle("🔖 Guide")
             .setDescription("Please define what guide are you looking for.\n\n**>guide skript**\n**>guide tuskegui**\n**>guide functions**\n**>guide skelletproxy**\n**>guide other**")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -115,7 +115,7 @@ bot.on("message", function(message) {
           message.channel.sendEmbed(guide);
         }
         if (args[1] == "skript" || args[1] == "sk") {
-          var guide = new Discord.RichEmbed()
+          let guide = new Discord.RichEmbed()
             .setTitle("🔖 Guide | Skript")
             .setDescription("Let me see, I found something. The bold one is recommended.\n\n[**General Skript tutorial by LimeGlass**](https://forums.skunity.com/threads/general-skript-tutorial.5174/#post-19939)\n[Basic of Skript by LulKeith](https://www.spigotmc.org/threads/basics-of-skript-tutorial.168745/)\n[Skript tutorial by Peter Güttinger](http://en.njol.ch/projects/skript/tutorial)")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -123,7 +123,7 @@ bot.on("message", function(message) {
           message.channel.sendEmbed(guide);
         }
         if (args[1] == "tuskegui" || args[1] == "guituske" || args[1] == "gui") {
-          var guide = new Discord.RichEmbed()
+          let guide = new Discord.RichEmbed()
             .setTitle("🔖 Guide | GUI from TuSKe")
             .setDescription("Let me see, I found something. The bold one is recommended.\n\n[GitHub tutorial](https://github.com/Tuke-Nuke/TuSKe/wiki/GUI-Manager)\n[**SkUnity board tutorial**](https://forums.skunity.com/threads/gui-manager-tutorial.2349/)")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -131,7 +131,7 @@ bot.on("message", function(message) {
           message.channel.sendEmbed(guide);
         }
         if (args[1] == "skelletproxy")  {
-          var guide = new Discord.RichEmbed()
+          let guide = new Discord.RichEmbed()
             .setTitle("🔖 Guide | SkelletProxy")
             .setDescription("Let me see, I found something. The bold one is recommended.\n\n[**SkUnity board tutorial by YoshYz**](https://forums.skunity.com/threads/skellettproxy.3595/)")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -139,7 +139,7 @@ bot.on("message", function(message) {
           message.channel.sendEmbed(guide);
         }
         if (args[1] == "functions")  {
-          var guide = new Discord.RichEmbed()
+          let guide = new Discord.RichEmbed()
             .setTitle("🔖 Guide | Functions")
             .setDescription("Let me see, I found something. The bold one is recommended.\n\n[**SkUnity wiki page**](https://forums.skunity.com/wiki/functions/)")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -147,7 +147,7 @@ bot.on("message", function(message) {
           message.channel.sendEmbed(guide);
         }
         if (args[1] == "other")  {
-          var guide = new Discord.RichEmbed()
+          let guide = new Discord.RichEmbed()
             .setTitle("🔖 Guide | Other")
             .setDescription("Quack!\n\n[Arrow effects tutorial by winterwolf007](https://forums.skunity.com/threads/arrow-effects-tutorial.2418/)\n[YAML tutorial by TonyMaster21](https://forums.skunity.com/threads/reading-writing-and-deleting-yaml.33/)\n[Info about packets by Tlatoani](https://forums.skunity.com/threads/packets.320/)")
             .setFooter(message.author.username, message.author.avatarURL)
@@ -157,7 +157,7 @@ bot.on("message", function(message) {
 
         break;
     case "download":
-      var download = new Discord.RichEmbed()
+      let download = new Discord.RichEmbed()
         .setTitle("📑 Download Skript")
         .addField("1.12+", "[Github releases (latest version)](https://github.com/bensku/skript/releases)\n[Recommended version](https://drive.google.com/file/d/0B8FRm4qNtysab3VNbzJIZXFiT3M/view)")
         .addField("1.9-1.11", "[Recommended version](https://drive.google.com/file/d/0B8FRm4qNtysaU1NlUllQWHlTem8/view)")
@@ -173,7 +173,7 @@ bot.on("message", function(message) {
     case "poll":
       if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.sendMessage("You don't have enough permissions to do that.");
       if (args[1])
-        var pool = new Discord.RichEmbed()
+        let pool = new Discord.RichEmbed()
           .setTitle("Community poll")
           .setDescription(args.slice(1).join(" "))
           .setFooter(message.author.username, message.author.avatarURL)
@@ -199,7 +199,7 @@ bot.on("message", function(message) {
       message.channel.sendMessage(config.UNFLIP);
       break;
     case "fact":
-      var fakt = new Discord.RichEmbed()
+      let fakt = new Discord.RichEmbed()
         .setTitle("🏆 Random fact")
         .setDescription(fact[Math.floor(Math.random() * fact.length)])
         .setColor(0xD6B329)
@@ -207,7 +207,7 @@ bot.on("message", function(message) {
       message.channel.sendEmbed(fakt);
       break;
     case "help":
-      var help = new Discord.RichEmbed()
+      let help = new Discord.RichEmbed()
         .setTitle("📢 Help")
         .setDescription("Prefix for normal commands is `>`\nAll normal commands: `about` `say` `bot` `poll` `guide` `download` `fact` `shrug` `tableflip` `lenny` `unflip` `emojilist`")
         .setColor(0xD6B329)
